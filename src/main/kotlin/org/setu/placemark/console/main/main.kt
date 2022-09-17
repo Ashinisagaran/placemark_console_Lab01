@@ -1,4 +1,4 @@
-package org.setu.placemark
+package org.setu.placemark.console.main
 
 import mu.KotlinLogging
 
