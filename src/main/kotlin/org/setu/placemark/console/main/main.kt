@@ -103,8 +103,8 @@ fun updatePlacemark() {
     listPlacemark()
     var searchId = getId()
     val aPlacemark = search(searchId)
-    var title: String
-    var desc: String
+    var title: String?
+    var desc: String?
 
 
     if(aPlacemark != null) {
@@ -114,14 +114,19 @@ fun updatePlacemark() {
             title = readLine()!!
             print("Enter a new Description for [ ${aPlacemark.description} ] : ")
             desc = readLine()!!
+//            println(
+//                "You updated [ $title ] for title " +
+//                        "and [ $desc ] for description"
+//            )
+        if (!title.isNullOrEmpty() && desc.isNullOrEmpty())
+        {
+            aPlacemark.title=title
+            aPlacemark.description=desc
             println(
                 "You updated [ $title ] for title " +
                         "and [ $desc ] for description"
             )
-        if (title.isNotEmpty() && desc.isNotEmpty())
-        {
-            aPlacemark.title=title
-            aPlacemark.description=desc
+            logger.info("Placemark Updated : [ $aPlacemark ]")
         } else
             println("Placemark Not Updated...")
 
