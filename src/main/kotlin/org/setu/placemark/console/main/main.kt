@@ -6,6 +6,7 @@ import org.setu.placemark.console.models.PlacemarkModel
 private val logger = KotlinLogging.logger {}
 
 var placemark = PlacemarkModel()
+val placemarks = ArrayList<PlacemarkModel>()
 
 fun main(args: Array<String>) {
     logger.info { "Launching Placemark Console App" }
@@ -54,7 +55,13 @@ fun addPlacemark(){
     placemark.title = readLine()!!
     print("Enter a Description : ")
     placemark.description = readLine()!!
-    println("You entered [ " + placemark.title + "] for title and [ " + placemark.description + "] for description")
+
+    if (placemark.title.isNotEmpty() && placemark.description.isNotEmpty()) {
+        placemarks.add(placemark.copy())
+        logger.info("Placemark Added : [ $placemark ]")
+    }
+    else
+        logger.info("Placemark Not Added")
 }
 
 fun updatePlacemark(){
@@ -65,11 +72,13 @@ fun updatePlacemark(){
     placemark.title = readLine()!!
     print("Enter a new Description for [ " + placemark.description + "] : ")
     placemark.description = readLine()!!
-    println("You entered [ " + placemark.title + "] for title and [ " + placemark.description + "] for description")
+    println("You updated [ " + placemark.title + "] for title and [ " + placemark.description + "] for description")
 }
 
-fun listPlacemark(){
-    println("You Chose List All Placemarks")
+fun listPlacemark() {
+    println("List All Placemarks")
+    println()
+    placemarks.forEach { logger.info("${it}") }
 }
 
 
