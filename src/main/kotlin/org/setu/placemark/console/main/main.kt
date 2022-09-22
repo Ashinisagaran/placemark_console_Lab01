@@ -103,19 +103,31 @@ fun updatePlacemark() {
     listPlacemark()
     var searchId = getId()
     val aPlacemark = search(searchId)
+    var title: String
+    var desc: String
+
 
     if(aPlacemark != null) {
-        print("Enter a new Title for [ " + aPlacemark.title + " ] : ")
-        aPlacemark.title = readLine()!!
-        print("Enter a new Description for [ " + aPlacemark.description + " ] : ")
-        aPlacemark.description = readLine()!!
-        println(
-            "You updated [ " + aPlacemark.title + " ] for title " +
-                    "and [ " + aPlacemark.description + " ] for description"
-        )
+
+
+            print("Enter a new Title for [ ${aPlacemark.title} ] : ")
+            title = readLine()!!
+            print("Enter a new Description for [ ${aPlacemark.description} ] : ")
+            desc = readLine()!!
+            println(
+                "You updated [ $title ] for title " +
+                        "and [ $desc ] for description"
+            )
+        if (title.isNotEmpty() && desc.isNotEmpty())
+        {
+            aPlacemark.title=title
+            aPlacemark.description=desc
+        } else
+            println("Placemark Not Updated...")
+
     }
     else
-        println("Placemark Not Updated...")
+        println("Placemark Not Found..")
 }
 
 
