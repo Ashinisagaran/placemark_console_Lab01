@@ -1,4 +1,3 @@
 package org.setu.placemark.console.models
 
-class PlacemarkModel {
-}
+data class PlacemarkModel(var title: String = "", var description: String = "")
