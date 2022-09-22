@@ -4,6 +4,9 @@ import mu.KotlinLogging
 
 private val logger = KotlinLogging.logger {}
 
+var title = ""
+var description = ""
+
 fun main(args: Array<String>) {
     logger.info { "Launching Placemark Console App" }
     println("Placemark Kotlin App Version 1.0")
@@ -13,9 +16,9 @@ fun main(args: Array<String>) {
     do {
         input = menu()
         when(input) {
-            1 -> addPlacemarks()
-            2 -> updatePlacemarks()
-            3 -> listPlacemarks()
+            1 -> addPlacemark()
+            2 -> updatePlacemark()
+            3 -> listPlacemark()
             -1 -> println("Exiting App")
             else -> println("Invalid Option")
         }
@@ -44,14 +47,27 @@ fun menu() : Int {
     return option
 }
 
-fun addPlacemarks(){
-    println("You Chose Add Placemark")
+fun addPlacemark(){
+    println("Add Placemark")
+    println()
+    print("Enter a Title : ")
+    title = readLine()!!
+    print("Enter a Description : ")
+    description = readLine()!!
+    println("You entered [$title] for title and [$description] for description")
 }
 
-fun updatePlacemarks(){
-    println("You Chose Add Placemark")
+fun updatePlacemark(){
+
+    println("Update Placemark")
+    println()
+    print("Enter a new Title for [$title] : ")
+    title = readLine()!!
+    print("Enter a new Description for [$description] : ")
+    description = readLine()!!
+    println("You entered [$title] for title and [$description] for description")
 }
 
-fun listPlacemarks(){
-    println("You Chose Add Placemark")
+fun listPlacemark(){
+    println("title : [$title] and description : [$description]")
 }
