@@ -52,6 +52,15 @@ class PlacemarkJSONStore : PlacemarkStore {
         serialize()
     }
 
+    override fun rate(placemark: PlacemarkModel) {
+        var foundPlacemark = findOne(placemark.id!!)
+        if (foundPlacemark != null) {
+            foundPlacemark.title = placemark.title
+            foundPlacemark.rating = placemark.rating
+        }
+        serialize()
+    }
+
     internal fun logAll() {
         placemarks.forEach { logger.info("${it}") }
     }

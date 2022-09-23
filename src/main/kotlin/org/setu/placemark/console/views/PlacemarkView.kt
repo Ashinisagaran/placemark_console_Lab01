@@ -14,8 +14,9 @@ class PlacemarkView {
         println("MAIN MENU")
         println(" 1. Add Placemark")
         println(" 2. Update Placemark")
-        println(" 3. List All Placemarks")
-        println(" 4. Search Placemarks")
+        println(" 3. Rate Placemarks")
+        println(" 4. List All Placemarks")
+        println(" 5. Search Placemarks")
         println("-1. Exit")
         println()
         print("Enter Option : ")
@@ -27,7 +28,7 @@ class PlacemarkView {
         return option
     }
 
-    fun listPlacemarks(placemarks : PlacemarkMemStore) {
+    fun listPlacemarks(placemarks : PlacemarkJSONStore) {
         println("List All Placemarks")
         println()
         placemarks.logAll()
@@ -70,6 +71,24 @@ class PlacemarkView {
             }
         }
         return false
+    }
+
+    fun addRatingForPlacemark(placemark : PlacemarkModel) : Boolean {
+
+        var option : String?
+        var tempRating: Int
+
+        do {
+            print("Enter you ratings for [ " + placemark.title + " ] : ")
+            option = readLine()!!
+            tempRating = if (option.toIntOrNull() != null && !option.isEmpty())
+                option.toInt()
+            else
+                -9
+        } while (tempRating<0 || tempRating>5)
+
+        placemark.rating = tempRating
+        return true
     }
 
     fun getId() : Long {

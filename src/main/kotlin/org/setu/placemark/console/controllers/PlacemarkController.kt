@@ -2,14 +2,14 @@ package org.setu.placemark.console.controllers
 
 import mu.KotlinLogging
 import org.setu.placemark.console.models.PlacemarkJSONStore
-import org.setu.placemark.console.models.PlacemarkMemStore
+//import org.setu.placemark.console.models.PlacemarkMemStore
 import org.setu.placemark.console.models.PlacemarkModel
 import org.setu.placemark.console.views.PlacemarkView
 
 class PlacemarkController {
 
-    val placemarks = PlacemarkMemStore()
-//    val placemarks = PlacemarkJSONStore()
+//    val placemarks = PlacemarkMemStore()
+    val placemarks = PlacemarkJSONStore()
     val placemarkView = PlacemarkView()
     val logger = KotlinLogging.logger {}
 
@@ -27,8 +27,9 @@ class PlacemarkController {
             when(input) {
                 1 -> add()
                 2 -> update()
-                3 -> list()
-                4 -> search()
+                3 -> rate()
+                4 -> list()
+                5 -> search()
                 -99 -> dummyData()
                 -1 -> println("Exiting App")
                 else -> println("Invalid Option")
@@ -69,6 +70,26 @@ class PlacemarkController {
         }
         else
             println("Placemark Not Updated...")
+    }
+
+    fun rate() {
+
+        placemarkView.listPlacemarks(placemarks)
+        val searchId = placemarkView.getId()
+        val aPlacemark = search(searchId)
+
+        if(aPlacemark != null) {
+            if(placemarkView.addRatingForPlacemark(aPlacemark)) {
+                placemarks.rate(aPlacemark)
+                placemarkView.showPlacemark(aPlacemark)
+                logger.info("Your rated Placemark : [ $aPlacemark ]")
+            }
+            else
+                logger.info("Placemark Not Rated")
+        }
+        else
+            println("Placemark Not Rated...")
+
     }
 
     fun search() {
