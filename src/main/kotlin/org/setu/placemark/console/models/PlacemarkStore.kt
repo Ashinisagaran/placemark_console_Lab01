@@ -6,4 +6,5 @@ interface PlacemarkStore {
     fun create(placemark: PlacemarkModel)
     fun update(placemark: PlacemarkModel)
     fun rate(placemark: PlacemarkModel)
+    fun delete(placemark: PlacemarkModel)
 }

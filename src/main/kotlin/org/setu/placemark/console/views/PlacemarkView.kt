@@ -17,6 +17,7 @@ class PlacemarkView {
         println(" 3. Rate Placemarks")
         println(" 4. List All Placemarks")
         println(" 5. Search Placemarks")
+        println(" 6. Delete Placemark")
         println("-1. Exit")
         println()
         print("Enter Option : ")
