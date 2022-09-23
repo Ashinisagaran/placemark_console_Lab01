@@ -1,5 +1,6 @@
 package org.setu.placemark.console.views
 
+import org.setu.placemark.console.models.PlacemarkJSONStore
 import org.setu.placemark.console.models.PlacemarkMemStore
 import org.setu.placemark.console.models.PlacemarkModel
 

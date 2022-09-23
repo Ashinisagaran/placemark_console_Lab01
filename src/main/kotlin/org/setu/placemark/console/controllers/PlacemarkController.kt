@@ -1,7 +1,7 @@
 package org.setu.placemark.console.controllers
 
 import mu.KotlinLogging
-import org.setu.placemark.console.main.controller
+import org.setu.placemark.console.models.PlacemarkJSONStore
 import org.setu.placemark.console.models.PlacemarkMemStore
 import org.setu.placemark.console.models.PlacemarkModel
 import org.setu.placemark.console.views.PlacemarkView
@@ -9,6 +9,7 @@ import org.setu.placemark.console.views.PlacemarkView
 class PlacemarkController {
 
     val placemarks = PlacemarkMemStore()
+//    val placemarks = PlacemarkJSONStore()
     val placemarkView = PlacemarkView()
     val logger = KotlinLogging.logger {}
 
@@ -19,8 +20,11 @@ class PlacemarkController {
 
     fun start ()
     {
+        var input: Int
+
         do {
-            when(menu()) {
+            input = menu()
+            when(input) {
                 1 -> add()
                 2 -> update()
                 3 -> list()
@@ -30,7 +34,7 @@ class PlacemarkController {
                 else -> println("Invalid Option")
             }
             println()
-        } while (menu() != -1)
+        } while (input != -1)
     logger.info { "Shutting Down Placemark Console App" }
     }
 
